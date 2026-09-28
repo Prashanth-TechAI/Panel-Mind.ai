@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+/*
+ * Design system.
+ *
+ * Restrained and spacious: near-white surfaces, one confident accent, a single
+ * spacing rhythm, and type doing most of the work. Brass survives only where
+ * it means something — the board's own nameplates — so it reads as identity
+ * rather than decoration.
+ */
+
+@theme {
+  /* --- Surfaces --- */
+  --color-page: #f6f3ec;
+  --color-surface: #fffdf9;
+  --color-surface-sunk: #eee9dc;
+  --color-line: #e3ddcd;
+  --color-line-strong: #d2cab4;
+
+  /* --- Ink: the logo navy, used for all type --- */
+  --color-ink: #1a2350;
+  --color-ink-soft: #525d80;
+  --color-ink-faint: #8a91a8;
+
+  /* --- Accent: actions, links, focus. Both values are the logo's own. --- */
+  --color-accent: #1a2350;
+  --color-accent-deep: #101636;
+  --color-accent-bright: #2b65c8;
+  --color-accent-wash: #e8effa;
+
+  /* --- Status --- */
+  --color-good: #2f6f4a;
+  --color-good-wash: #ecf5ef;
+  --color-warn: #8a6410;
+  --color-warn-wash: #fdf5e6;
+  --color-danger: #a8321f;
+  --color-danger-wash: #fdf0ee;
+
+  /* Bright blue from the wordmark, for highlights. */
+  --color-brand-bright: #3b64c2;
+
+  /* --- Brass: the board's own identity --- */
+  --color-brass: #b08d2f;
+  --color-brass-bright: #d4b256;
+
+  /* --- Board member accents (mirrors backend board.py) ---
+     Categorical identity palette, validated against both light and dark
+     surfaces for lightness band, chroma floor, CVD separation and contrast.
+     An earlier hand-picked set collapsed M2 against M3 for deuteranopes
+     (ΔE 2.9). Re-run before changing: scripts/validate_palette.js */
+  --color-m0: #b08a12;
+  --color-m1: #3e80c4;
+  --color-m2: #c25526;
+  --color-m3: #00918f;
+  --color-m4: #8f5fc8;
+
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-source-serif), Georgia, serif;
+  --font-mono: var(--font-spline-mono), ui-monospace, monospace;
+
+  --shadow-card: 0 1px 2px #17160f0a, 0 4px 12px -6px #17160f14;
+  --shadow-lift: 0 2px 4px #17160f0d, 0 12px 28px -10px #17160f1f;
+  --shadow-pop: 0 8px 32px -8px #17160f26, 0 2px 8px #17160f0f;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    color: var(--color-accent);
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Engraved brass. The board's nameplates and nothing else. */
+  .brass-plate {
+    background: linear-gradient(
+      158deg,
+      #8a6f1d 0%,
+      #c9a227 34%,
+      #eedd9d 50%,
+      #b08a12 68%,
+      #7a621a 100%
+    );
+    box-shadow:
+      inset 0 1px 0 #fff3c8aa,
+      inset 0 -1px 0 #00000033;
+  }
+
+  .engraved {
+    color: #33280b;
+    text-shadow: 0 1px 0 #ffeaa855;
+  }
+
+  .rule-brass {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      #b08d2f55 15%,
+      #b08d2f 50%,
+      #b08d2f55 85%,
+      transparent
+    );
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+  }
+}
+
+@layer utilities {
+  .tracking-official {
+    letter-spacing: 0.18em;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .animate-rise {
+    animation: rise 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .animate-pop {
+    animation: pop 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* The lamp above whoever currently holds the mic. */
+  @keyframes lamp {
+    0%,
+    100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-lamp {
+    animation: lamp 2.4s ease-in-out infinite;
+  }
+
+  @keyframes waveform {
+    0%,
+    100% {
+      transform: scaleY(0.28);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
+
+  .animate-waveform {
+    animation: waveform 0.62s ease-in-out infinite;
+  }
+
+
+  /* Indeterminate: used where there is genuinely nothing to measure. */
+  @keyframes sweep {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
+    }
+  }
+
+  .animate-sweep {
+    animation: sweep 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-rise,
+    .animate-pop,
+    .animate-lamp,
+    .animate-sweep,
+    .animate-waveform {
+      animation: none;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+[project]
+name = "upsc-board"
+version = "0.1.0"
+description = "UPSC interview board simulator — five AI members, one candidate"
+requires-python = ">=3.12"
+
+dependencies = [
+    "fastapi>=0.120",
+    "uvicorn[standard]>=0.40",
+    "pydantic[email]>=2.12",
+    "pydantic-settings>=2.12",
+    "httpx>=0.28",
+    "structlog>=25.5",
+    "python-dotenv>=1.2",
+    "asyncpg>=0.30",
+    "pypdf>=5.1",
+    "python-multipart>=0.0.20",
+    "livekit-agents[deepgram,elevenlabs,openai,silero,turn-detector]~=1.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+    "pytest-asyncio>=1.3",
+    "respx>=0.22",
+    "ruff>=0.15",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]
+# `live` tests call real providers and cost real money. Excluded by default;
+# run them with `pytest -m live` before shipping.
+addopts = "-m 'not live'"
+markers = ["live: exercises real provider APIs (slow, costs credits)"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.uv]
+package = false

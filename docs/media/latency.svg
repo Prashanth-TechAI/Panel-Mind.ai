@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 338" width="900" height="338" font-family="ui-sans-serif,-apple-system,Segoe UI,Roboto,sans-serif" role="img" aria-label="Measured latency of each stage, in milliseconds">
+<title>Measured latency by stage (milliseconds)</title>
+<text x="0" y="20" font-size="15" font-weight="700" fill="#8899aa">Measured latency by stage</text>
+<text x="0" y="38" font-size="12" fill="#8899aa">Live providers, this machine. Lower is better.</text>
+<line x1="210.0" y1="46" x2="210.0" y2="282" stroke="#8899aa" stroke-opacity="0.22" stroke-width="1"/>
+<text x="210.0" y="300" font-size="11" fill="#8899aa" text-anchor="middle">0</text>
+<line x1="330.0" y1="46" x2="330.0" y2="282" stroke="#8899aa" stroke-opacity="0.22" stroke-width="1"/>
+<text x="330.0" y="300" font-size="11" fill="#8899aa" text-anchor="middle">250</text>
+<line x1="450.0" y1="46" x2="450.0" y2="282" stroke="#8899aa" stroke-opacity="0.22" stroke-width="1"/>
+<text x="450.0" y="300" font-size="11" fill="#8899aa" text-anchor="middle">500</text>
+<line x1="570.0" y1="46" x2="570.0" y2="282" stroke="#8899aa" stroke-opacity="0.22" stroke-width="1"/>
+<text x="570.0" y="300" font-size="11" fill="#8899aa" text-anchor="middle">750</text>
+<line x1="690.0" y1="46" x2="690.0" y2="282" stroke="#8899aa" stroke-opacity="0.22" stroke-width="1"/>
+<text x="690.0" y="300" font-size="11" fill="#8899aa" text-anchor="middle">1000</text>
+<text x="198" y="65" font-size="12.5" fill="#8899aa" text-anchor="end">Postgres round trip</text>
+<rect x="210" y="54" width="3.0" height="13" rx="4" fill="#799fd5"/>
+<text x="221.0" y="65" font-size="12" font-weight="600" fill="#8899aa">1 ms  <tspan font-weight="400" fill-opacity="0.7">control plane</tspan></text>
+<text x="198" y="99" font-size="12.5" fill="#8899aa" text-anchor="end">Hot LLM decision (median)</text>
+<rect x="210" y="88" width="139.7" height="13" rx="4" fill="#5e81b7"/>
+<text x="357.7" y="99" font-size="12" font-weight="600" fill="#8899aa">291 ms  <tspan font-weight="400" fill-opacity="0.7">budget 400 ms</tspan></text>
+<text x="198" y="133" font-size="12.5" fill="#8899aa" text-anchor="end">Voice, first audio byte</text>
+<rect x="210" y="122" width="143.5" height="13" rx="4" fill="#5d80b6"/>
+<text x="361.5" y="133" font-size="12" font-weight="600" fill="#8899aa">299 ms  <tspan font-weight="400" fill-opacity="0.7">budget 500 ms</tspan></text>
+<text x="198" y="167" font-size="12.5" fill="#8899aa" text-anchor="end">Hot LLM auth probe</text>
+<rect x="210" y="156" width="156.0" height="13" rx="4" fill="#5a7db4"/>
+<text x="374.0" y="167" font-size="12" font-weight="600" fill="#8899aa">325 ms</text>
+<text x="198" y="201" font-size="12.5" fill="#8899aa" text-anchor="end">Realtime transport probe</text>
+<rect x="210" y="190" width="185.8" height="13" rx="4" fill="#5476ad"/>
+<text x="403.8" y="201" font-size="12" font-weight="600" fill="#8899aa">387 ms</text>
+<text x="198" y="235" font-size="12.5" fill="#8899aa" text-anchor="end">Cold LLM auth probe</text>
+<rect x="210" y="224" width="198.7" height="13" rx="4" fill="#5274aa"/>
+<text x="416.7" y="235" font-size="12" font-weight="600" fill="#8899aa">414 ms</text>
+<text x="198" y="269" font-size="12.5" fill="#8899aa" text-anchor="end">Speech-to-text probe</text>
+<rect x="210" y="258" width="463.2" height="13" rx="4" fill="#1d3971"/>
+<text x="681.2" y="269" font-size="12" font-weight="600" fill="#8899aa">965 ms  <tspan font-weight="400" fill-opacity="0.7">off the turn path</tspan></text>
+<text x="0" y="330" font-size="11" fill="#8899aa" fill-opacity="0.8">Hot LLM: median of 3 samples. Voice: median of 5. Probes: single call. Measured 2 Aug 2026.</text>
+</svg>
