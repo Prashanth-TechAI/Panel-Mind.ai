@@ -281,7 +281,13 @@ The schema is created and migrated automatically on API startup — it is idempo
 
 ### 2 · Environment
 
-Create `.env` in the project root:
+Copy the template and fill in your keys. Every variable is explained inside it, marked **REQUIRED** or **OPTIONAL**:
+
+```bash
+cp .env.local.example .env
+```
+
+It must be named `.env`, not `.env.local`: the backend and the voice worker only read `.env`. The required keys are:
 
 ```bash
 # --- Database ---
@@ -289,8 +295,8 @@ DATABASE_URL=postgresql://localhost/panelmind
 
 # --- LLM: hot path (must be fast) ---
 GROQ_API_KEY=...
-GROQ_MODEL=llama-3.3-70b-versatile
-GROQ_SUMMARY_MODEL=llama-3.1-8b-instant
+GROQ_MODEL=openai/gpt-oss-120b
+GROQ_SUMMARY_MODEL=openai/gpt-oss-20b
 
 # --- LLM: cold path (must be smart) ---
 OPENROUTER_API_KEY=...

@@ -56,3 +56,6 @@ __pycache__/
 /PREETAM_KUMAR_DAF_1_compressed.pdf
 /image.png
 /profile.png
+
+# env template is safe to commit — it holds no secrets
+!.env.local.example
